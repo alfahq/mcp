@@ -1,0 +1,38 @@
+name: Manual npm Release
+
+on:
+  workflow_dispatch:
+    inputs:
+      bump:
+        description: "Release type (major, minor, patch)"
+        required: true
+        default: patch
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out code
+        uses: actions/checkout@v4
+
+      - name: Set up Node
+        uses: actions/setup-node@v3
+        with:
+          node-version: "18"
+          registry-url: https://registry.npmjs.org/
+
+      - name: Install deps & test
+        run: |
+          npm ci
+          npm test
+
+      - name: Bump version & tag
+        run: |
+          npm version ${{ github.event.inputs.bump }} -m "chore(release): %s [skip ci]"
+      - name: Push tags
+        run: git push --follow-tags
+
+      - name: Publish to npm
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+        run: npm publish --access public

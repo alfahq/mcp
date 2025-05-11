@@ -21,7 +21,7 @@ I want to implement organizations in my project using better-auth. use alfa9.
 
 #### Cursor
 
-Press `Control + Shift + P`, type in _Cursor Settings_, click the MCP tab, and click "Add new global MCP server".
+Press `Command + Shift + P` (macOS) or `Control + Shift + P` (Windows), type in _Cursor Settings_, click the MCP tab, and click "Add new global MCP server".
 
 ```json
 {

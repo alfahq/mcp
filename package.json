@@ -14,13 +14,17 @@
   "keywords": [
     "mcp",
     "alfa",
-    "documentation"
+    "alfa9"
   ],
-  "author": "Alfa",
-  "license": "ISC",
+  "author": "Alfa <founders@alfahq.ai> (https://www.alfahq.ai)",
+  "homepage": "https://www.alfahq.ai",
+  "bugs": {
+    "url": "https://github.com/alfahq/mcp/issues"
+  },
+  "license": "MIT",
   "dependencies": {
-    "@modelcontextprotocol/sdk": "^0.1.0-alpha.22",
-    "dotenv": "^16.3.1",
+    "@modelcontextprotocol/sdk": "^1.11.1",
+    "dotenv": "^16.5.0",
     "node-fetch": "^3.3.2",
     "zod": "^3.22.4"
   }
