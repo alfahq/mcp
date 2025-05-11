@@ -1,5 +1,8 @@
 name: Manual npm Release
 
+permissions:
+  contents: write
+
 on:
   workflow_dispatch:
     inputs:
@@ -14,6 +17,9 @@ jobs:
     steps:
       - name: Check out code
         uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          fetch-depth: 0
 
       - name: Set up Node
         uses: actions/setup-node@v3
@@ -22,8 +28,7 @@ jobs:
           registry-url: https://registry.npmjs.org/
 
       - name: Install deps
-        run: |
-          npm ci
+        run: npm ci
 
       - name: Configure Git
         run: |
@@ -31,9 +36,9 @@ jobs:
           git config --global user.email "actions@github.com"
 
       - name: Bump version & tag
-        run: |
-          npm version ${{ github.event.inputs.bump }} -m "chore(release): %s [skip ci]"
-      - name: Push tags
+        run: npm version ${{ github.event.inputs.bump }} -m "chore(release): %s [skip ci]"
+
+      - name: Push tags back to GitHub
         run: git push --follow-tags
 
       - name: Publish to npm
