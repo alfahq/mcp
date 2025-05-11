@@ -1,0 +1,27 @@
+{
+  "name": "@alfahq/mcp",
+  "version": "1.0.0",
+  "description": "MCP server for Alfa documentation retrieval",
+  "main": "src/server.js",
+  "type": "module",
+  "bin": {
+    "@alfahq/mcp": "./src/server.js"
+  },
+  "scripts": {
+    "start": "node src/server.js",
+    "dev": "node --watch src/server.js"
+  },
+  "keywords": [
+    "mcp",
+    "alfa",
+    "documentation"
+  ],
+  "author": "Alfa",
+  "license": "ISC",
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^0.1.0-alpha.22",
+    "dotenv": "^16.3.1",
+    "node-fetch": "^3.3.2",
+    "zod": "^3.22.4"
+  }
+} 
