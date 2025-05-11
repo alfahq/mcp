@@ -225,7 +225,7 @@ server.tool(
       };
     }
 
-    if (docResponse) {
+    if (docResponse.error) {
       return {
         content: [
           {
