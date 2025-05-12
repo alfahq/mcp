@@ -1,6 +1,6 @@
 # Alfa
 
-Alfa allows you to include always-updated library docs in Cursor, Windsurf, and VS Code using our MCP (model context protocl) server.
+Alfa allows you to include always-updated library docs in Cursor, Windsurf, and VS Code using our MCP (model context protocol) server.
 
 Now you won't have to vibe code with stale information, our MCP feeds up-to-date docs and code samples to your editor.
 
