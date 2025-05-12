@@ -1,6 +1,6 @@
 {
   "name": "@alfahq/mcp",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "MCP server for Alfa documentation retrieval",
   "main": "src/server.js",
   "type": "module",
@@ -28,4 +28,4 @@
     "node-fetch": "^3.3.2",
     "zod": "^3.22.4"
   }
-} 
+}
