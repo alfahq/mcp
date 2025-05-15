@@ -9,9 +9,9 @@ import {
 } from "./lib/api.js";
 import { formatSearchResults } from "./lib/utils.js";
 import dotenv from "dotenv";
-import path from "path";
-import { fileURLToPath } from "url";
-import fs from "fs";
+import path from "node:path";
+import { fileURLToPath } from "node:url";
+import fs from "node:fs";
 
 // Determine __dirname for ES modules
 const __filename = fileURLToPath(import.meta.url);
@@ -33,8 +33,9 @@ for (let i = 0; i < args.length; i++) {
 }
 
 // Load .env variables from project root
+// This will not override existing environment variables (like those from MCP client config)
 const envPath = path.resolve(__dirname, "../.env");
-dotenv.config({ path: envPath });
+dotenv.config({ path: envPath, override: false });
 
 // If API key was provided via command line, set it in environment and save to .env
 if (apiKey) {
@@ -74,11 +75,16 @@ if (apiKey) {
   }
 }
 
+// Set default API base URL if not provided
+if (!process.env.ALFA_CRAWLER_API_BASE_URL) {
+  process.env.ALFA_CRAWLER_API_BASE_URL = "https://api.alfahq.ai";
+}
+
 // Handle DEFAULT_MINIMUM_TOKENS
 let DEFAULT_MINIMUM_TOKENS = 5000;
 if (process.env.DEFAULT_MINIMUM_TOKENS) {
-  const parsed = parseInt(process.env.DEFAULT_MINIMUM_TOKENS, 10);
-  if (!isNaN(parsed) && parsed > 0) {
+  const parsed = Number.parseInt(process.env.DEFAULT_MINIMUM_TOKENS, 10);
+  if (!Number.isNaN(parsed) && parsed > 0) {
     DEFAULT_MINIMUM_TOKENS = parsed;
   } else {
     console.warn(
@@ -279,6 +285,8 @@ async function main() {
     console.error('       "ALFA_API_KEY": "YOUR_API_KEY"');
     console.error("     }");
     console.error("\n");
+  } else {
+    console.error(`Alfa API key found: ${process.env.ALFA_API_KEY.substring(0, 4)}...`);
   }
 
   const transport = new StdioServerTransport();

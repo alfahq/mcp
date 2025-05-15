@@ -14,7 +14,7 @@ export function formatSearchResults(searchResponse) {
 
   return searchResponse.results
     .map((lib) => {
-      let result = [];
+      const result = [];
       result.push(`- Library ID (name): ${lib.name}`); // Using crawler's 'name' as the ID
       if (lib.displayName) {
         result.push(`  Display Name: ${lib.displayName}`);
