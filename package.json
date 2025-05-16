@@ -18,6 +18,10 @@
   ],
   "author": "Alfa <founders@alfahq.ai> (https://www.alfahq.ai)",
   "homepage": "https://www.alfahq.ai",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/alfahq/mcp.git"
+  },
   "bugs": {
     "url": "https://github.com/alfahq/mcp/issues"
   },
